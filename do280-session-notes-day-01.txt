@@ -85,8 +85,40 @@ Point-02-## Classroom Environment as per DO280 LAB.
 Server - api.cluster-ns.citi.com  => api.ocp4.example.com 
 Port   - 6443 	                  => 6443 
 	
-	
-	
+Domain/Network Details:-
+     Network Name                 Domain Name                    IP Range 
+ student network                lab.example.com               172.25.250.0/24 
+ cluster network                ocp4.example.com              192.168.50.0/24 
+ classroom Network              example.com                   172.25.252.0/24 
+
+
+VMs/Server details:-
+  workstation.lab.example.com      [jump server; GUI]
+  classroom.example.com            [Internet connectivity - quay.io; registry.redhat.io ]
+  bastion.lab.example.com          [Connect StudentNetwork to CLassroom Network]
+  utility.lab.example.com          [Connect studentNetwrok to cluster network]
+                                   FYI- HAproxy,DNS,DHCP,Apache,PXE,KickStart-ToBuildOCPcluster;NFS-server for StorageClass]
+								   
+  master01.ocp4.example.com        master/worker nodes 
+
+ Note: As per Production POC/Actual Prod/Stag/test/Dev/INT etc 
+
+  3 master nodes / control plan  
+  2/3/5 worker nodes  / compute plan --> worker nodes can be "infra/storage/custom/abc/xyz/123"
+  
+  master nodes - kuberntes/ocp service running 
+  worker nodes - End user application using [BookMyShow;MakeMyTrip/citiBankingService etc]
+  
+  1 worker node (250 pods and specific Core/CPU) - 1K USD for per node per year (basic)
+  1000 node cluster (1Mil USD).
+  
+  3 master node , 1000 worker node [2,500 worker node can be handle by 3 master - w.r.t RHOCPv4.6]
+  
+  
+  
+  
+  
+
 	
 	
 	
