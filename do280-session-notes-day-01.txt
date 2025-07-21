@@ -1,0 +1,94 @@
+https://github.com/cprakash2118/Do280v414-21-July25-Weekdays
+
+Point-01-## ProductName - "Red Hat OpenShift"
+
+Certified Kubernetes (k8s) + Add On Service + RHEL Core OS = Enterprise Kubernetes (Red Hat OpenShift).
+
+1-) Cloud services editions
+ - Red Hat OpenShift Service on AWS      [Platform=AWS;POC=Amazon]
+ - Microsoft Azure Red Hat OpenShift     [Platform=MS-Azure;POC=MS-Azure]
+ - Red Hat OpenShift Dedicated           [Platform=AWS/GCP;POC=RedHat]
+ - Red Hat OpenShift on IBM Cloud        [Platform=IBM;POC=IBM]
+ 
+2-) Self-managed editions
+ - Red Hat OpenShift Kubernetes Engine      [Basic-RHOKE]
+ - Red Hat OpenShift Container Platform     [Standard-RHOCP]
+ - Red Hat OpenShift Platform Plus          [Add-On Services - RHOPP]
+ - Red Hat OpenShift Virtualization Engine  [RHOV]
+ 
+ FYI- "Red Hat OpenShift" can manage container & Virtualization workload at a time.
+
+3-) Services & add-ons
+ - Red Hat OpenShift AI
+ - Red Hat OpenShift Lightspeed
+ - Red Hat OpenShift Virtualization                     [RHOV]
+ - Red Hat Quay                                         [registry service]
+ - Red Hat Advanced Cluster Management for Kubernetes   [RHACM]
+ - Red Hat Advanced Cluster Security for Kubernetes     [RHACS]
+ - Red Hat Advanced Developer Suite
+ - Red Hat OpenShift Consulting
+
+Note: LAB (DO280 - RHOKE).
+
+***********************************
+Point-02-## Classroom Environment as per DO280 LAB.
+
+- User Details:-
+  Login to VMs:-
+   - student/student - sudo access 
+   - root/redhat 
+   
+  Login to OCP cluster (Red Hat OpenShift Cluster Platform):-
+   - admin/redhatocp     - cluster-admin access [Same as root access w.r.t Linux].
+   - developer/developer - member account.
+
+   - kubeadmin/kubeadmin-password
+     FYI-  As per LAB setup - on "utility" node, location=/home/lab/ocp4/auth/{kubeadmin/kubeadmin-password}
+    
+     $ ssh root@utility
+     # cd /home/lab/ocp4/auth/
+     # cat kubeadmin-password	; echo 
+     # cat kubeadmin | grep server
+       https://api.ocp4.example.com:6443 
+
+   Note: Required below information to login to OCP cluster.	   
+    - userName 
+	- password 
+	- API URL 
+	or
+	- token 
+	- API URL 
+	
+	$ oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+	
+	What is API URL ?
+	https://api.ocp4.example.com:6443 
+	
+	https://api.clusterName.baseDomain:6443
+	
+	As per LAB - DO280v414 
+	
+	cluster-admin = ocp4 
+	baseDomain    = example.com 
+	port          = 6443 	
+	https://api.ocp4.example.com:6443 
+	
+	
+	BaseDomain  - citi.com 
+	clusterName - cluster-apac ; cluster-emea ; cluster-na 
+	
+	API URL for APAC OCP cluster: https://api.cluster-apac.citi.com:6443 
+	API URL for EMEA OCP cluster: https://api.cluster-emea.citi.com:6443 
+	API URL for NA OCP cluster: https://api.cluster-ns.citi.com:6443 
+
+
+Server - api.cluster-ns.citi.com  => api.ocp4.example.com 
+Port   - 6443 	                  => 6443 
+	
+	
+	
+	
+	
+	
+	
+	
