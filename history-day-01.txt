@@ -1,0 +1,228 @@
+    1  sudo reboot
+    2  uptime 
+    3  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+    4  ssh root@utility 
+    5  nslookup api.ocp4.example.com
+    6  ssh api.ocp4.example.com -l root 
+    7  nslookup api.ocp4.example.com
+    8  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+    9  oc login -u admin -p redhat https://api.ocp4.example.com:6443 
+   10  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+   11  oc new-project demo01
+   12  oc project -q 
+   13  oc get all
+   14  oc get sa
+   15  oc get secret 
+   16  oc create serviceaccount app-sa
+   17  oc get sa
+   18  oc get sa app-sa -o yaml 
+   19  oc adm policy add-cluster-role-to-user cluster-reader -z app-sa 
+   20  oc describe clusterrolebindings |less
+   21  oc get nodes
+   22  oc debug node/master01 
+   23  podman  ps 
+   24  podman  imageges
+   25  podman  images 
+   26  podman pull quay.io/cprakash2118/april-java-unzip-httpd-image-02
+   27  podman images
+   28  podman run --name myapp -p 8080:80 -d c17c0c02f0bf
+   29  podman  ps
+   30  podman  exec -it myapp /bin/bash 
+   31  podman run --name myapp02 -p 8081:80 -d c17c0c02f0bf
+   32  for x in {3..9}; do podman run --name myapp0$x -p 808${x}:80 -d c17c0c02f0bf; done
+   33  podman  ps
+   34  lsof -i:8080
+   35  lsof -i:8081
+   36  lsof -i:8082
+   37  lsof -i:8083
+   38  lsof -i:8084
+   39  podman ps 
+   40  podman  rmi -af quay.io/cprakash2118/april-java-unzip-httpd-image-02:latest 
+   41  podman  rmi -af 
+   42  podman ps 
+   43  oc get oauth -o yaml 
+   44  oc get oauth -o yaml > oauth.yaml
+   45  vim oauth.yaml 
+   46  oc project -q
+   47  oc get pods 
+   48  oc new-app --name myapp httpd:2.4 
+   49  oc get pods 
+   50  oc get namespaces demo01 
+   51  oc get namespaces demo01 -o yaml 
+   52  oc get pods
+   53  oc get svc 
+   54  oc get rs
+   55  oc get deployment 
+   56  oc get deployment -o yaml > my-deployment.yaml 
+   57  vim my-deployment.yaml 
+   58  oc get pods -o wide 
+   59  oc adm node-logs -u crio 
+   60  oc adm node-logs -u crio master01 
+   61  oc adm node-logs -u kubelet master01 
+   62  oc adm node-logs -u kubelet master01 | grep myapp 
+   63  vim display.sh
+   64  chmod 755 display.sh 
+   65  ./display.sh 1 2 3 
+   66  ./display.sh podman crio miratis 
+   67  ./display.sh crio miratis 
+   68  oc get pods
+   69  oc get svc 
+   70  oc get replicaset 
+   71  oc get deployment 
+   72  oc get namespaces demo01 
+   73  oc get template 
+   74  oc get template -n openshift
+   75  oc get all
+   76  #oc new-app --name myapp httpd:2.4 
+   77  oc get is -n openshift 
+   78  oc explain is |less
+   79  oc get is -n openshift | grep httpd
+   80  oc get istag -n openshift | grep httpd
+   81  oc get pods 
+   82  oc get all
+   83  oc get is 
+   84  oc new-app --name myapp_02 quay.io/cprakash2118/april-java-unzip-httpd-image-02
+   85  oc new-app --name myapp02 quay.io/cprakash2118/april-java-unzip-httpd-image-02
+   86  oc get pods 
+   87  oc get is
+   88  oc get route -n openshift-image-registry 
+   89  oc delete namespaces demo01 
+   90  oc get template
+   91  oc project -q
+   92  oc new-project demo01 
+   93  oc project -q
+   94  oc get all
+   95  oc get template
+   96  oc get template -n openshift
+   97  oc get template -n openshift -o name 
+   98  oc describe template mysql-persistent -n openshift |less
+   99  oc process --parameters mysql-persistent -n openshift 
+  100  oc get template -o openshift -o name 
+  101  oc get template -n openshift -o name 
+  102  oc get template mysql-ephemera -n openshift -o yaml > my-template-mysql-ephemera.yaml 
+  103  oc get template mysql-ephemeral -n openshift -o yaml > my-template-mysql-ephemeral.yaml 
+  104  vim my-template-mysql-ephemera
+  105  vim my-template-mysql-ephemeral.yaml 
+  106  oc process --parameters mysql-persistent -n openshift 
+  107  oc process --parameters -f my-template-mysql-ephemeral.yaml 
+  108  vim my-template-mysql-ephemeral.yaml 
+  109  oc process --parameters -f my-template-mysql-ephemeral.yaml 
+  110  cat my-template-mysql-ephemeral.yaml  | grep kind 
+  111  oc get all 
+  112  oc get template -n openshift 
+  113  oc get template -n openshift -o name 
+  114  oc new-app --template mysql-ephemeral -p MEMORY_LIMIT=700Mi
+  115  oc get nodes
+  116  oc get pods 
+  117  oc get all
+  118  oc get pods
+  119  oc rsh mysql-1-n5xj8 
+  120  oc get pods 
+  121  oc get template
+  122  ll
+  123  oc create -f my-template-mysql-ephemeral.yaml
+  124  vim my-template-mysql-ephemeral.yaml 
+  125  oc create -f my-template-mysql-ephemeral.yaml
+  126  oc get template
+  127  oc project -q
+  128   lab start packaged-templates
+  129   oc new-project packaged-templates
+  130  oc get all
+  131  oc project -q
+  132   oc new-app --template=mysql-persistent -p MYSQL_USER=user1 -p MYSQL_PASSWORD=mypasswd
+  133  oc getb pods 
+  134  oc get pods 
+  135  cd DO280/labs/
+  136  ll
+  137  cd packaged-templates/
+  138  ll
+  139  l
+  140  tree
+  141  cd custom-template/
+  142  ll
+  143  vim roster-template.yaml 
+  144  cat roster-template.yaml | grep kind 
+  145  oc create -f roster-template.yaml 
+  146  oc get template 
+  147   oc process roster-template  -p MYSQL_USER=user1 -p MYSQL_PASSWORD=mypasswd -p INIT_DB=true | oc apply -f -
+  148  oc get all
+  149  oc get route 
+  150  oc get pdos
+  151  oc get pods
+  152  oc rsh mysql-1-rm2ft 
+  153  oc project -q 
+  154   lab finish packaged-templates
+  155  cd
+  156  mkdir work 
+  157  cd work/
+  158  pwd
+  159  ll
+  160  helm create BookMyShow 
+  161  tree 
+  162  vim BookMyShow/Chart.yaml 
+  163  helm show chart BookMyShow
+  164  vim BookMyShow/values.yaml 
+  165  helm show values BookMyShow 
+  166  helm show values BookMyShow |less
+  167  which helm
+  168  mv /usr/local/bin/helm /usr/local/bin/helm-bkp
+  169  sudo mv /usr/local/bin/helm /usr/local/bin/helm-bkp
+  170  helm
+  171  curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+  172  ll
+  173  chmod 755 get_helm.sh 
+  174  vim get_helm.sh 
+  175  ./get_helm.sh 
+  176  helm version 
+  177  helm create demo-app 
+  178  tree demo-app/
+  179  oc whoami --show-console 
+  180  helm repo list 
+  181  helm repo --help |less
+  182  helm repo add --help |less
+  183  helm repo add cp-helm-repo http://helm.ocp4.example.com/charts
+  184  nslookup helm.ocp4.example.com
+  185  nslookup registry.ocp4.example.com
+  186  helm repo list 
+  187  helm search repo --versions 
+  188  helm show chart cp-helm-repo/etherpad --version 0.0.6
+  189  helm show chart cp-helm-repo/etherpad --version 0.0.7
+  190  helm show values cp-helm-repo/etherpad --version 0.0.7
+  191  oc new-project demo05
+  192  oc get all
+  193  helm search repo --versions 
+  194  #helm install cp-myapp cp-helm-repo/etherpad --version 0.0.6
+  195  helm show values cp-helm-repo/etherpad --version 0.0.6
+  196  helm show values cp-helm-repo/etherpad --version 0.0.6 |l
+  197  vim var.yaml 
+  198  #helm install cp-myapp cp-helm-repo/etherpad --version 0.0.6 -f var.yaml 
+  199  oc get pods
+  200  helm install cp-myapp cp-helm-repo/etherpad --version 0.0.6 -f var.yaml 
+  201  oc get pods
+  202  oc get all
+  203  helm list 
+  204  vim var.yaml 
+  205  #helm upgrade cp-myapp 
+  206  helm repo list 
+  207  helm search repo list 
+  208  helm search repo 
+  209  helm upgrade cp-myapp cp-helm-repo/etherpad -f var.yaml --version 0.0.7
+  210  oc get pods
+  211  helm list 
+  212  nslookup google.com
+  213  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+  214  uptime 
+  215  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+  216  whoami 
+  217  hostname -s
+  218  hostname -d
+  219  hostname -f
+  220  oc whoami 
+  221  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+  222  nslookup api.ocp4.example.com
+  223  ssh api.ocp4.example.com -l root
+  224  oc whoami 
+  225  oc get sc 
+  226  ssh root@utility 
+  227  oc whoami --show-console 
+  228  history > history-day-01.txt 
