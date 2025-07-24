@@ -1,0 +1,102 @@
+https://github.com/cprakash2118/Do280v414-21-July25-Weekdays
+
+## Quick Recap:-
+Product - Red Hat OpenShift
+Classroom Environment - 
+ - user details w.r.t VMs login - student/student ; root/redhat 
+ - user details w.r.t OCP login - admin/redhatocp ; developer/developer ; kubeadmin/password-file 
+   kubeadmin's password location - on "utility" path=/home/lab/ocp4/auth 
+ 
+ - API URL - https://api.clusterName.baseDomain:6443 
+   Web Console - https://appName-namespaceName.clusterName.baseDomain
+   
+   As per our lab - 
+   clusterName - ocp4 [Example - apac/ns/emea etc]
+   namespaceName - openshift-console 
+   baseDomain  - example.com [Example - citi.com]
+   
+   
+   Based on bove input:-
+   API URL - https://api.ocp4.example.com:6443 
+   Web COnsole - https://console-openshift-console.apps.ocp4.example.com 
+
+   CLI login to OCP cluster ?
+   $ oc loing -u admin -p redhatocp https://api.ocp4.example.com:6443 
+   
+  Via firefox - https://console-openshift-console.apps.ocp4.example.com 
+  admin/redhatocp 
+
+  OCP cluster - master/worker nodes 
+  - master node also called as control plan node.
+  - worker node also called as compute plain node 
+  
+  
+################
+Authentication and Authorization:-
+
+- How to login to OCP cluster ?
+  $ oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+  $ oc whoami 
+  $ oc whoami -t 
+  
+  or 
+  $ oc login --token=sjklhkjashfkjsahkdjas https://api.ocp4.example.com:6443
+
+
+
+- Where is "admin" user and password ?
+- How we can create own users like unit1-user10/redhat 
+
+Task-01:-
+ user1-5/password ; secretName=htpasswd-secret-sre-team ; IdP Name(Identity Provider)=idp-htpasswd-sre-team 
+ 
+Step-01:- Create users data basebase (userName & Password).
+$ htpasswd -c -B -b htpasswd-upload-file user1 password123  
+$ htpasswd    -B -b htpasswd-upload-file user2 password123
+$ htpasswd    -B -b htpasswd-upload-file user3 password123
+$ htpasswd    -B -b htpasswd-upload-file user4 password123
+$ htpasswd    -B -b htpasswd-upload-file user5 password123
+
+$ cat htpasswd-upload-file
+
+
+Step-02:- Login to OCP cluster and create secret.
+$ oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+$ oc whoami 
+$ oc whoami -t 
+$ oc whoami --show-console 
+https://console-openshift-console.apps.ocp4.example.com 
+$ oc get nodes 
+$ oc version 
+$ oc get clusterversion 
+
+$ oc create secret generic htpasswd-secret-sre-team --from-file htpasswd=htpasswd-upload-file -n openshift-config 
+$ oc get secret htpasswd-secret-sre-team -n openshift-config
+$ oc get secret htpasswd-secret-sre-team -n openshift-config -o yaml > htpasswd-secret.yaml 
+
+
+Step-03:- Update to Oauth service regarding IdP.
+$ oc get oauth cluster 
+$ oc get oauth cluster -o yaml
+$ oc get oauth cluster -o yaml > oauth.yaml 
+
+update the Oauth service.
+vim oauth.yaml 
+https://docs.redhat.com/en/documentation/openshift_container_platform/4.13/pdf/authentication_and_authorization/OpenShift_Container_Platform-4.13-Authentication_and_authorization-en-US.pdf
+
+Search for "identity"
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+
+  
