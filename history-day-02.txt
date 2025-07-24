@@ -1,0 +1,396 @@
+    1  sudo reboot
+    2  uptime 
+    3  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+    4  ssh root@utility 
+    5  nslookup api.ocp4.example.com
+    6  ssh api.ocp4.example.com -l root 
+    7  nslookup api.ocp4.example.com
+    8  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+    9  oc login -u admin -p redhat https://api.ocp4.example.com:6443 
+   10  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+   11  oc new-project demo01
+   12  oc project -q 
+   13  oc get all
+   14  oc get sa
+   15  oc get secret 
+   16  oc create serviceaccount app-sa
+   17  oc get sa
+   18  oc get sa app-sa -o yaml 
+   19  oc adm policy add-cluster-role-to-user cluster-reader -z app-sa 
+   20  oc describe clusterrolebindings |less
+   21  oc get nodes
+   22  oc debug node/master01 
+   23  podman  ps 
+   24  podman  imageges
+   25  podman  images 
+   26  podman pull quay.io/cprakash2118/april-java-unzip-httpd-image-02
+   27  podman images
+   28  podman run --name myapp -p 8080:80 -d c17c0c02f0bf
+   29  podman  ps
+   30  podman  exec -it myapp /bin/bash 
+   31  podman run --name myapp02 -p 8081:80 -d c17c0c02f0bf
+   32  for x in {3..9}; do podman run --name myapp0$x -p 808${x}:80 -d c17c0c02f0bf; done
+   33  podman  ps
+   34  lsof -i:8080
+   35  lsof -i:8081
+   36  lsof -i:8082
+   37  lsof -i:8083
+   38  lsof -i:8084
+   39  podman ps 
+   40  podman  rmi -af quay.io/cprakash2118/april-java-unzip-httpd-image-02:latest 
+   41  podman  rmi -af 
+   42  podman ps 
+   43  oc get oauth -o yaml 
+   44  oc get oauth -o yaml > oauth.yaml
+   45  vim oauth.yaml 
+   46  oc project -q
+   47  oc get pods 
+   48  oc new-app --name myapp httpd:2.4 
+   49  oc get pods 
+   50  oc get namespaces demo01 
+   51  oc get namespaces demo01 -o yaml 
+   52  oc get pods
+   53  oc get svc 
+   54  oc get rs
+   55  oc get deployment 
+   56  oc get deployment -o yaml > my-deployment.yaml 
+   57  vim my-deployment.yaml 
+   58  oc get pods -o wide 
+   59  oc adm node-logs -u crio 
+   60  oc adm node-logs -u crio master01 
+   61  oc adm node-logs -u kubelet master01 
+   62  oc adm node-logs -u kubelet master01 | grep myapp 
+   63  vim display.sh
+   64  chmod 755 display.sh 
+   65  ./display.sh 1 2 3 
+   66  ./display.sh podman crio miratis 
+   67  ./display.sh crio miratis 
+   68  oc get pods
+   69  oc get svc 
+   70  oc get replicaset 
+   71  oc get deployment 
+   72  oc get namespaces demo01 
+   73  oc get template 
+   74  oc get template -n openshift
+   75  oc get all
+   76  #oc new-app --name myapp httpd:2.4 
+   77  oc get is -n openshift 
+   78  oc explain is |less
+   79  oc get is -n openshift | grep httpd
+   80  oc get istag -n openshift | grep httpd
+   81  oc get pods 
+   82  oc get all
+   83  oc get is 
+   84  oc new-app --name myapp_02 quay.io/cprakash2118/april-java-unzip-httpd-image-02
+   85  oc new-app --name myapp02 quay.io/cprakash2118/april-java-unzip-httpd-image-02
+   86  oc get pods 
+   87  oc get is
+   88  oc get route -n openshift-image-registry 
+   89  oc delete namespaces demo01 
+   90  oc get template
+   91  oc project -q
+   92  oc new-project demo01 
+   93  oc project -q
+   94  oc get all
+   95  oc get template
+   96  oc get template -n openshift
+   97  oc get template -n openshift -o name 
+   98  oc describe template mysql-persistent -n openshift |less
+   99  oc process --parameters mysql-persistent -n openshift 
+  100  oc get template -o openshift -o name 
+  101  oc get template -n openshift -o name 
+  102  oc get template mysql-ephemera -n openshift -o yaml > my-template-mysql-ephemera.yaml 
+  103  oc get template mysql-ephemeral -n openshift -o yaml > my-template-mysql-ephemeral.yaml 
+  104  vim my-template-mysql-ephemera
+  105  vim my-template-mysql-ephemeral.yaml 
+  106  oc process --parameters mysql-persistent -n openshift 
+  107  oc process --parameters -f my-template-mysql-ephemeral.yaml 
+  108  vim my-template-mysql-ephemeral.yaml 
+  109  oc process --parameters -f my-template-mysql-ephemeral.yaml 
+  110  cat my-template-mysql-ephemeral.yaml  | grep kind 
+  111  oc get all 
+  112  oc get template -n openshift 
+  113  oc get template -n openshift -o name 
+  114  oc new-app --template mysql-ephemeral -p MEMORY_LIMIT=700Mi
+  115  oc get nodes
+  116  oc get pods 
+  117  oc get all
+  118  oc get pods
+  119  oc rsh mysql-1-n5xj8 
+  120  oc get pods 
+  121  oc get template
+  122  ll
+  123  oc create -f my-template-mysql-ephemeral.yaml
+  124  vim my-template-mysql-ephemeral.yaml 
+  125  oc create -f my-template-mysql-ephemeral.yaml
+  126  oc get template
+  127  oc project -q
+  128   lab start packaged-templates
+  129   oc new-project packaged-templates
+  130  oc get all
+  131  oc project -q
+  132   oc new-app --template=mysql-persistent -p MYSQL_USER=user1 -p MYSQL_PASSWORD=mypasswd
+  133  oc getb pods 
+  134  oc get pods 
+  135  cd DO280/labs/
+  136  ll
+  137  cd packaged-templates/
+  138  ll
+  139  l
+  140  tree
+  141  cd custom-template/
+  142  ll
+  143  vim roster-template.yaml 
+  144  cat roster-template.yaml | grep kind 
+  145  oc create -f roster-template.yaml 
+  146  oc get template 
+  147   oc process roster-template  -p MYSQL_USER=user1 -p MYSQL_PASSWORD=mypasswd -p INIT_DB=true | oc apply -f -
+  148  oc get all
+  149  oc get route 
+  150  oc get pdos
+  151  oc get pods
+  152  oc rsh mysql-1-rm2ft 
+  153  oc project -q 
+  154   lab finish packaged-templates
+  155  cd
+  156  mkdir work 
+  157  cd work/
+  158  pwd
+  159  ll
+  160  helm create BookMyShow 
+  161  tree 
+  162  vim BookMyShow/Chart.yaml 
+  163  helm show chart BookMyShow
+  164  vim BookMyShow/values.yaml 
+  165  helm show values BookMyShow 
+  166  helm show values BookMyShow |less
+  167  which helm
+  168  mv /usr/local/bin/helm /usr/local/bin/helm-bkp
+  169  sudo mv /usr/local/bin/helm /usr/local/bin/helm-bkp
+  170  helm
+  171  curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+  172  ll
+  173  chmod 755 get_helm.sh 
+  174  vim get_helm.sh 
+  175  ./get_helm.sh 
+  176  helm version 
+  177  helm create demo-app 
+  178  tree demo-app/
+  179  oc whoami --show-console 
+  180  helm repo list 
+  181  helm repo --help |less
+  182  helm repo add --help |less
+  183  helm repo add cp-helm-repo http://helm.ocp4.example.com/charts
+  184  nslookup helm.ocp4.example.com
+  185  nslookup registry.ocp4.example.com
+  186  helm repo list 
+  187  helm search repo --versions 
+  188  helm show chart cp-helm-repo/etherpad --version 0.0.6
+  189  helm show chart cp-helm-repo/etherpad --version 0.0.7
+  190  helm show values cp-helm-repo/etherpad --version 0.0.7
+  191  oc new-project demo05
+  192  oc get all
+  193  helm search repo --versions 
+  194  #helm install cp-myapp cp-helm-repo/etherpad --version 0.0.6
+  195  helm show values cp-helm-repo/etherpad --version 0.0.6
+  196  helm show values cp-helm-repo/etherpad --version 0.0.6 |l
+  197  vim var.yaml 
+  198  #helm install cp-myapp cp-helm-repo/etherpad --version 0.0.6 -f var.yaml 
+  199  oc get pods
+  200  helm install cp-myapp cp-helm-repo/etherpad --version 0.0.6 -f var.yaml 
+  201  oc get pods
+  202  oc get all
+  203  helm list 
+  204  vim var.yaml 
+  205  #helm upgrade cp-myapp 
+  206  helm repo list 
+  207  helm search repo list 
+  208  helm search repo 
+  209  helm upgrade cp-myapp cp-helm-repo/etherpad -f var.yaml --version 0.0.7
+  210  oc get pods
+  211  helm list 
+  212  nslookup google.com
+  213  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+  214  uptime 
+  215  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+  216  whoami 
+  217  hostname -s
+  218  hostname -d
+  219  hostname -f
+  220  oc whoami 
+  221  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+  222  nslookup api.ocp4.example.com
+  223  ssh api.ocp4.example.com -l root
+  224  oc whoami 
+  225  oc get sc 
+  226  ssh root@utility 
+  227  oc whoami --show-console 
+  228  history > history-day-01.txt 
+  229  git clone https://github.com/cprakash2118/Do280v414-21-July25-Weekdays
+  230  cp -rpv history-day-01.txt Do280v414-21-July25-Weekdays/
+  231  cd Do280v414-21-July25-Weekdays/
+  232  ll
+  233  git status 
+  234  git add history-day-01.txt 
+  235  git commit -m update 
+  236  git commit --amend --reset-author
+  237  git commit -m update 
+  238  git config --global --edit
+  239  git commit -m update 
+  240  git push 
+  241  htpasswd --help 
+  242  htpasswd -c -b -B htpasswd-file-upload user1 password123 
+  243  mkdir work 
+  244  mkdir work-unit-3
+  245  cd work-unit-3/
+  246  pwd
+  247  ll
+  248  htpasswd -c -b -B htpasswd-file-upload user1 password123 
+  249  ll
+  250  cat htpasswd-file-upload 
+  251  htpasswd -b -B htpasswd-file-upload user2 password123 
+  252  cat htpasswd-file-upload 
+  253  htpasswd -b  htpasswd-file-upload user2 password123 
+  254  htpasswd -b  htpasswd-file-upload user3 password123 
+  255  htpasswd -b  -B htpasswd-file-upload user2 password123 
+  256  cat htpasswd-file-upload 
+  257  htpasswd -b  -B htpasswd-file-upload user4 password123 
+  258  htpasswd -b  -B htpasswd-file-upload user5 password123 
+  259  cat htpasswd-file-upload 
+  260  vim htpasswd-file-upload 
+  261  cat htpasswd-file-upload 
+  262  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+  263  oc whoami 
+  264  oc whoami -t
+  265  oc whoami --show-console 
+  266  oc get nodes
+  267  oc version 
+  268  ll
+  269  oc create secret generic htpasswd-secret-sre-team --from-file htpasswd=htpasswd-file-upload -n openshift-config 
+  270  oc get secret -n openshift-config 
+  271  oc get secret htpasswd-secret-sre-team -n openshift-config 
+  272  oc get secret htpasswd-secret-sre-team -n openshift-config -o yaml 
+  273  echo "dXNlcjE6JDJ5JDA1JEtQMHZoNEZmWXdSeDlMOVNJb01FLk9BQ09GRmJDZmtWekhiSTlnZXBEcmZrbXN5YWFNaEFHCnVzZXIyOiQyeSQwNSR3R0hHY08yUnZhakZjYmFxNFNrRXB1RWVqZ0lCU0s1UzdKakI0QWw4RnhIOG91UmJXTGJtcQp1c2VyMzokYXByMSRzdzMxZlZPMiRuSVZzZlpDbC90cWNmTnVXMURVaWEvCnVzZXI0OiQyeSQwNSRReXpVWGlCcC53UmxNcHZ1TDEzYkVlUXhJSVNJNGR1ZmFKQVlzRWRRN3NyMXFiYkVPcE92Qwp1c2VyNTokMnkkMDUkYVk2aXkvRGZmNTNWaUkuLnZBYTdQZVlISXRUdHZ5dUl4cTNGVGdMMmQ1OGNmaURCOC80WE8KY3A6JDJ5JDA1JGFZNml5L0RmZjUzVmlJLi52QWE3UGVZSEl0VHR2eXVJeHEzRlRnTDJkNThjZmlEQjgvNFhPCg==" | base64 -d 
+  274  oc create configmap anything-cm --from-file htpasswd-file-upload 
+  275  oc project -q
+  276  oc get cm 
+  277  oc get cm anything-cm 
+  278  oc get cm anything-cm -o yaml 
+  279  oc get cm anything-cm -o json 
+  280  oc get cm anything-cm -o yaml 
+  281  oc delete cm anything-cm 
+  282  oc get nodes
+  283  ll
+  284  oc get oauth cluster -o yaml > oauth.yaml 
+  285  vim oauth.yaml 
+  286  oc get oauth 
+  287  oc get oauth -o yaml 
+  288  ll
+  289  oc get pods -n openshift-authentication
+  290  oc login -u user1 -p password123  https://api.ocp4.example.com
+  291  oc login -u user1 -p password123  https://api.ocp4.example.com:6443
+  292  ll
+  293  oc apply -f oauth.yaml 
+  294  vim oauth.yaml 
+  295  oc apply -f oauth.yaml 
+  296  oc get pods -n openshift-authentication
+  297  oc login -u user1 -p password123  https://api.ocp4.example.com:6443
+  298  watch oc get pods -n openshift-authentication
+  299  oc login -u user1 -p password123  https://api.ocp4.example.com:6443
+  300  watch oc get pods -n openshift-authentication
+  301  watch oc get pods -n openshift-authentication -o wide 
+  302  oc login -u user1 -p password123  https://api.ocp4.example.com:6443
+  303  oc login -u user2 -p password123  https://api.ocp4.example.com:6443
+  304  oc login -u user3 -p password123  https://api.ocp4.example.com:6443
+  305  oc login -u user4 -p password123  https://api.ocp4.example.com:6443
+  306  oc login -u cp -p password123  https://api.ocp4.example.com:6443
+  307  oc whoami 
+  308  oc get nodes
+  309  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+  310  oc get users 
+  311  oc get identities.user.openshift.io 
+  312  oc get users 
+  313  ll
+  314  mv htpasswd-file-upload htpasswd-file-upload-sre 
+  315  touch htpasswd-file-upload-app01 
+  316  for x in {11..20}; do htpasswd -B -b htpasswd-file-upload-app01 user$x redhat; done
+  317  ll
+  318  cat htpasswd-file-upload-app01
+  319  ll
+  320  vim oauth.yaml 
+  321  oc create secret generic htpasswd-secret-app01-team --from-file htpasswd=htpasswd-file-upload-app01 -n openshift-config 
+  322  oc get secret -n openshift | grep team 
+  323  oc get secret -n openshift-config | grep team 
+  324  vim oauth.yaml 
+  325  oc apply -f oauth.yaml 
+  326  oc get oauth cluster -o yaml > oauth.yaml 
+  327  vim oauth.yaml 
+  328  oc apply -f oauth.yaml 
+  329  watch oc get pods -n openshift-authentication -o wide 
+  330  for x in {11..20}; do oc login -u user$x -p redhat; done
+  331  watch oc get pods -n openshift-authentication -o wide 
+  332  for x in {11..20}; do oc login -u user$x -p redhat; done
+  333  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+  334  oc get users 
+  335  oc get users  | grep sre 
+  336  oc get users  | grep app
+  337  oc get pods -n openshift-authentication
+  338  oc get pods -n openshift-apiserver 
+  339  oc get pods -n openshift-kube-apiserver 
+  340  oc get pods -n openshift-kube-controller-manager  
+  341  oc get pods -n openshift-kube-scheduler
+  342  oc get pods -n openshift-authentication
+  343  oc get oauth 
+  344  oc get oauth -o yaml 
+  345  oc get groups
+  346  oc adm groups new sre_grp 
+  347  oc get groups
+  348  oc adm groups add-users sre_grp user1 user2 user3 user4 user5 
+  349  oc get groups
+  350  oc login -u user1 -p password123 https://api.ocp4.example.com:6443 
+  351  oc get nodes
+  352  oc get users
+  353  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+  354  oc adm policy add-cluster-role-to-group cluster-admin sre_grp
+  355  oc login -u user1 -p password123 https://api.ocp4.example.com:6443 
+  356  oc whoami 
+  357  oc get nodes
+  358  oc get users 
+  359  oc auth can-i create user
+  360  oc login -u user11 -p password123 https://api.ocp4.example.com:6443 
+  361  oc login -u user11 -p redhat https://api.ocp4.example.com:6443 
+  362  oc whoami 
+  363  oc auth can-i create user
+  364  ll
+  365  oc extract --help |less
+  366  #oc extract configmap/nginx --to=-
+  367  oc extract secret/htpasswd-secret-sre-team --to=. -n openshift-config 
+  368  oc whoami 
+  369  oc login -u user11 -p redhat https://api.ocp4.example.com:6443 
+  370  oc login -u user1 -p redhat https://api.ocp4.example.com:6443 
+  371  oc login -u user1 -p password123 https://api.ocp4.example.com:6443 
+  372  oc extract secret/htpasswd-secret-sre-team --to=. -n openshift-config 
+  373  ll
+  374  vim htpasswd
+  375  htpasswd -b -B htpasswd user1 redhat 
+  376  htpasswd -b -B htpasswd user2 redhat 
+  377  htpasswd -b -B htpasswd user3 redhat 
+  378  vim htpasswd
+  379  htpasswd -D htpasswd cp 
+  380  cat htpasswd
+  381  oc set data --help |less
+  382  #oc set data secret/foo --from-file=secret-dir
+  383  oc set data secret/htpasswd-secret-sre-team --from-file htpasswd=htpasswd -n openshift-config 
+  384  watch oc get pods -n openshift-authentication -o wide 
+  385  ehco redhat | sha1sum 
+  386  echo redhat | sha1sum 
+  387  htpasswd --help 
+  388  oc get oauth -o yaml 
+  389  oc extract secret/ldap-secret --to=. -n openshift-config 
+  390  cat bindPassword ; echo 
+  391  oc extract cm/ca-config-map --to=. -n openshift-config 
+  392  ll
+  393  vim ca.crt 
+  394  ll
+  395  git clone https://github.com/cprakash2118/Do280v414-21-July25-Weekdays
+  396  history > Do280v414-21-July25-Weekdays/history-day-02.txt 
