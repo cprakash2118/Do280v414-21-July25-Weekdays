@@ -1,0 +1,50 @@
+-US#
+
+Done:-
+user1-4/redhat   - group=sre_grp ; IdP=idp-htpasswd-sre-team 
+user11-20/redhat - group=app01_grp; IdP=idp-htpasswd-app01-team
+
+
+Update:- TBD
+Task-01:- user6-10/redhat - group=devops_grp ; IdP=idp-htpasswd-devops-team.
+                                    
+
+Task-02:-
+1-admin/redhatocp - LDAP login  IdP=LDAP -
+2-admin/red - htpasswd login - IdP=idp-htpasswd-sre-team 
+
+
+Task-03:-
+remove self-provisioner default access.
+add self-provisioner to devops_grp 
+
+Task-04:- RBAC same only.
+namespace/project=ns-payment-app01 
+user11-13 - admin w.r.t namespace=ns-payment-app01
+user14-18 - edit w.r.t namespace=ns-payment-app01
+user19-20 - view w.r.t namespace=ns-payment-app01
+
+
+
+#######################
+Role Based Access Control (RBAC):-
+ - Rule - Action to be performed 
+ - ROle - Set of actions 
+ - Binding - When assign role(s) to users or Groups - called role binding.
+
+Default roles - 
+cluster-admin  - Admin w.r.t cluster (same as root account w.r.t Linux env).
+cluster-reader - Only can read all the cluster resources.
+self-provisioner - Able to create projects/namespace.
+basic user - member of cluster 
+view - read access 
+edit - write accesss
+cluster-status - Provide status of the cluster.
+
+Scope of CLuster.
+- project/namespace
+- cluster 
+
+
+
+
