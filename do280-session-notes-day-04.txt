@@ -1,0 +1,40 @@
+###Point-01-# Login to ROL.
+ROL - RedHat Online Learning (Platform).
+https://rol.redhat.com  [RedHat Login ID - RHL ID]
+
+###Point-02-# Download and Access your LAB (Red Hat Cloud).
+- Click on "Join" option, Go through "Overview".
+- Click on "Lab" to access Red Hat Cloud LAB.
+- Click on "Resources" then click on "Access BookSelf" - ebook/bookself (TOC).
+
+###Point-03-#
+- To access your LAB (workstation) - Click on "Open Console" 
+- workstation is only GUI based OS - Used as jump server to login to OCP cluster & other VMs.
+
+- Login to OCP cluster using mentioned user.
+  UserName - admin
+  Password - redhatocp
+  API URL  - https://api.ocp4.example.com:6443 
+
+Tone based authentication
+  $ oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 
+  $ oc version 
+  Gather Info:-
+   - User Details [userName; token; web console]
+   - OpenShift version [client & server; kubernetes version ; kustomize Version]
+   - Cluster level details [capacity of OCP cluster - nodes details, cluster status etc]
+
+Certificate Based authnetication:   
+  $ ssh root@utility ; cd /home/lab/ocp4/auth ; scp -r kube* student@workstation:~/
+    password: student 
+  # exit 	
+  $ ls -l kube* 
+  $ env | grep KUBEADMIN
+  $ export KUBEADMIN=/home/student/kubeconfig 
+  $ env | grep KUBEADMIN
+  $ oc get nodes 
+  $ oc auth can-i create user 
+
+
+
+ 
