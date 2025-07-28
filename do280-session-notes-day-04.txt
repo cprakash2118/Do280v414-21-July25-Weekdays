@@ -11,6 +11,8 @@ https://rol.redhat.com  [RedHat Login ID - RHL ID]
 - To access your LAB (workstation) - Click on "Open Console" 
 - workstation is only GUI based OS - Used as jump server to login to OCP cluster & other VMs.
 
+- Login to all VMs - student/student ; root/redhat 
+
 - Login to OCP cluster using mentioned user.
   UserName - admin
   Password - redhatocp
@@ -35,6 +37,20 @@ Certificate Based authnetication:
   $ oc get nodes 
   $ oc auth can-i create user 
 
+******************
+Shift + Crtl + "+ key" - Fount size (Zoom out)
+Shift + "- key" - Found size (Zoom In)
+******************
+
+- Login to your Web Console:-
+$ oc whoami 
+admin 
+$oc whoami --show-console 
+https://console-openshift-console.apps.ocp4.example.com
+
+Via Firefox login to OCP web console 
+UserName - admin 
+Password - redhatocp 
 
 
- 
+
