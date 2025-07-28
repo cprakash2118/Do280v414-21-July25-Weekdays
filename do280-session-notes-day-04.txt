@@ -52,5 +52,87 @@ Via Firefox login to OCP web console
 UserName - admin 
 Password - redhatocp 
 
+#################################################
+Task-01:-
+UserName=user1-5
+password=redhat 
+secretName=secret-devops 
+IdentityProviderName=IdP-htpasswd-devops-team 
+fileName=htpasswd-devops-file-upload 
+
+$ mkdir work ; cd work 
+Step-1-# Create file "htpasswd-devops-file-upload"
+
+$ htpasswd -c -B -b htpasswd-devops-file-upload user1 redhat 
+$ htpasswd -B -b htpasswd-devops-file-upload user2 redhat
+$ htpasswd -B -b htpasswd-devops-file-upload user3 redhat
+$ htpasswd -B -b htpasswd-devops-file-upload user4 redhat
+$ htpasswd -B -b htpasswd-devops-file-upload user5 redhat
+
+$ cat htpasswd-devops-file-upload
+
+Step-2-# Create secret (type=generic --> --from-file). Hint (Use lab to complete the command).
+$ oc create secret generic secret-devops --from-file htpasswd=htpasswd-devops-file-upload -n openshift-config
+$ oc get secret -n openshift-config
+or
+$ oc get secret secret-devops -n openshift-config
+$ oc get secret secret-devops -n openshift-config -o yaml 
+$ oc get secret secret-devops -n openshift-config -o json
+
+Step-3-# Update to Oauth file.
+$ oc get oauth cluster 
+$ oc get oauth cluster -o yaml > oauth-anyname.yaml 
+$ vim oauth-anyname.yaml or .yml
+https://docs.redhat.com/en/documentation/openshift_container_platform/4.14
+https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/authentication_and_authorization/index
+https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/pdf/authentication_and_authorization/OpenShift_Container_Platform-4.14-Authentication_and_authorization-en-US.pdf
+
+https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html-single/authentication_and_authorization/index
+
+Search for "identityProvider"
+
+apiVersion: config.openshift.io/v1
+kind: OAuth
+metadata:
+  name: cluster
+spec:
+  identityProviders:
+  - name: my_htpasswd_provider 
+    mappingMethod: claim 
+    type: HTPasswd
+    htpasswd:
+      fileData:
+        name: htpass-secret 
+		
+  #Below line added by you; do not change anything above.
+  - name: IdP-htpasswd-devops-team 
+    mappingMethod: claim 
+    type: HTPasswd
+    htpasswd:
+      fileData:
+        name: secret-devops 
+
+$ oc apply -f oauth.yaml 
+$ oc get pods -n openshift-authentication
+POD need to restart (It might take 2,3 mins - wait for this).
+
+$ oc delete pod podname-copyPaste -n openshift-authentication
+$ oc get pods -n openshift-authentication
+
+$ oc login -u user1 -p redhat https://api.ocp4.example.com:6443 
+
+
+
+		
+
+
+ 
+ 
+
+
+
+
+
+
 
 
