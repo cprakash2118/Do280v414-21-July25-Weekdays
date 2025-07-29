@@ -17,14 +17,14 @@ Unit-1# Declarative Resource Management.
 - Kustomize Overlays 
 
 Imperative Versus Declarative Workflows:-
+$ oc new-project ns-demo01
+$ oc project -q
 $ oc new-app --name myapp httpd:latest 
+
 $ oc get pods           [POD]
 $ oc get svc/service    [Service]
 $ oc get replicaset     [ReplicaSet]
 $ oc get deployment     [Deployment]
-
-FYI- To access application deployed on OCP cluster via route [expose service as route].
-http://somename.apps.ocp4.example.com 
 
 $ oc expose service serviceName --hostname somename.apps.ocp4.example.com
 $ oc get route 
@@ -32,3 +32,7 @@ $ curl http://somename.apps.ocp4.example.com
 or 
 Firefox 
 $ firefox http://somename.apps.ocp4.example.com  & 
+
+FYI- To access application deployed on OCP cluster via route [expose service as route].
+http://somename.apps.ocp4.example.com 
+
