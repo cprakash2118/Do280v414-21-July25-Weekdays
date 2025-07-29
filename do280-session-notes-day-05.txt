@@ -1,0 +1,34 @@
+#Quick Recap (5mins):-
+Unit-3-# Authetication & Authorization
+ - Authetication via IdP, Used "Oauth" used identity broker.
+   Authetication done by IdP (Identity Provider = htpasswd, LDAP, Keystone,OpenIDConnect,GitAUthe etc).
+   Oauth provide token after authentication (Oauth deals with authorization).
+ 
+ - RBAC (Role Based Access Control)
+   rules, roles, rolebindings - project/namespace & cluster level.
+
+ - oc projects | egrep 'openshift-authentication|openshift-apiserver|openshift-kube-apiserver'
+ - oc projects | egrep 'openshift-kube-controller-manager|openshift-scheduler|etcd'
+ - Oauth -> OpenShift-apiserver (Proxy server) -> OpenShift-kube-apiserver -> OpenShift-apiserver -> Oauth.
+  
+
+Unit-1# Declarative Resource Management.
+- Resource Manifests 
+- Kustomize Overlays 
+
+Imperative Versus Declarative Workflows:-
+$ oc new-app --name myapp httpd:latest 
+$ oc get pods           [POD]
+$ oc get svc/service    [Service]
+$ oc get replicaset     [ReplicaSet]
+$ oc get deployment     [Deployment]
+
+FYI- To access application deployed on OCP cluster via route [expose service as route].
+http://somename.apps.ocp4.example.com 
+
+$ oc expose service serviceName --hostname somename.apps.ocp4.example.com
+$ oc get route 
+$ curl http://somename.apps.ocp4.example.com 
+or 
+Firefox 
+$ firefox http://somename.apps.ocp4.example.com  & 
