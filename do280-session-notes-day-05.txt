@@ -61,6 +61,97 @@ $ cat /home/student/kubeadmin-password
 $ oc login -u admin -p alsdjaskld  httpd://api.ocp4.example.com:6443
 $ oc get oauth -o yaml 
 
+*****************************************
+Resource Manifest - POD, Service, deployment, replicaset, secret, configmap etc 
+
+$ oc explain pod |less 
+
+$vim pod-manifest.yaml 
+
+apiVersion: v1
+kind: Pod 
+metadata: 
+  name: myapp 
+spec:
+  metadata:
+  name: example-pod
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: myapp-container
+    image: image-registry.openshift-image-registry.svc:5000/openshift/httpd@sha256:59d3f0243ddb600a3030ce25eb5db0c9e60f2732ea1fb08c57b871ef7baf8641
+    imagePullPolicy: IfNotPresent
+    name: httpd
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    - containerPort: 8443
+      protocol: TCP
+
+
+vim replicaset.yaml 
+apiVersion: app/v1 
+kind: ReplicaSet
+metadata:
+   name: anyname 
+spec:
+  replicas: 1 
+  selector: 
+    matchLables:
+	  app: myapp 
+  template: 
+    metadata: 
+  name: myapp 
+spec:
+  metadata:
+  name: example-pod
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: myapp-container
+    image: image-registry.openshift-image-registry.svc:5000/openshift/httpd@sha256:59d3f0243ddb600a3030ce25eb5db0c9e60f2732ea1fb08c57b871ef7baf8641
+    imagePullPolicy: IfNotPresent
+    name: httpd
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    - containerPort: 8443
+      protocol: TCP
+	  
+#########################
+$ mkdir GIT 
+$ git clone https://github.com/cprakash2118/Do280v414-21-July25-Weekdays
+$ cd Do280v414-21-July25-Weekdays
+
+$ oc new-project ns-demo01 
+$ oc project -q
+
+$ oc apply -f pod.yaml 
+$ oc get all
+$ oc delete pod <tab>
+
+$ oc apply -f replicaset.yaml 
+$ oc get all 
+$ oc delete pod <tab>
+FYI - Pod will be recated via rs 
+$ oc get all
+$ oc delete -f replicaset.yaml 
+
+Depoyment:-
+$ oc apply -f cp-deployment.yaml 
+$ oc get all 
+$ oc delete pod <tab>
+FYI - Pod will be recated via deployment using rs. 
+$ oc get all
+$ oc delete -f cp-deployment.yaml 
+
+DaemonSet example:-
+$ oc apply -f cp-daemon.yaml 
+$ oc get pods -o wide  
+$ oc get all
+$ oc delete -f replicaset.yaml 
 
 
 
