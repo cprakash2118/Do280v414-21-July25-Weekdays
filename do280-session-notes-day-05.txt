@@ -36,3 +36,34 @@ $ firefox http://somename.apps.ocp4.example.com  &
 FYI- To access application deployed on OCP cluster via route [expose service as route].
 http://somename.apps.ocp4.example.com 
 
+
+*****************************
+$ whoami ; hostname -f  
+student 
+workstation.lab.example.com 
+
+$ ssh root@utility   [It will not ask for password]
+# cd /home/lab/ocp4/auth 
+# ls 
+kubeadmin-password kubeconfig 
+# scp -r kube* student@workstation:~/
+student's Password: student 
+# exit
+
+Option-1 to login to OCP cluster:-
+$ export KUBECONFIG=/home/student/kubeconfig 
+$ env | grep KUBECONFIG
+KUBECONFIG=/home/student/kubeconfig 
+$ unset KUBECONFIG  (For revert)
+
+Option-2 to login to OCP cluster:-
+$ cat /home/student/kubeadmin-password
+$ oc login -u admin -p alsdjaskld  httpd://api.ocp4.example.com:6443
+$ oc get oauth -o yaml 
+
+
+
+
+
+
+
